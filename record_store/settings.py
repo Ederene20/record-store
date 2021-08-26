@@ -37,9 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Packages
+    #'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+
+    #
+    #'debug_toolbar.middleware.DebugToolbarMiddleWare',
+    #
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -47,7 +55,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
+
+#INTERNAL_IPS = [
+#    '127.0.0.1',
+#]
 
 ROOT_URLCONF = 'record_store.urls'
 
@@ -78,7 +91,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'recordstore',
         'USER': 'postgres',
-        'PASSWORD': '',
+        'PASSWORD': 'superuser',
         'HOST': '',
         'PORT': '5432'
     }
@@ -109,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'UTC+1'
 
 USE_I18N = True
 
