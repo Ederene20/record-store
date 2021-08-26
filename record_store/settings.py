@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     # Packages
     #'debug_toolbar',
+
+    # my apps
+    'store.apps.StoreConfig'
 ]
 
 MIDDLEWARE = [
@@ -122,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC+1'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
