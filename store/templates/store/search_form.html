@@ -1,0 +1,14 @@
+<div class="col-lg detail-separator">
+    <form class="col-md-6 col-md-offset-3 text-center" action="{% url 'store:search' %}" method="get"
+          accept-charset="utf-8">
+        <div class="form-group">
+            <label for="searchForm">Search a record</label>
+            <div class="row">
+                <input class="col-sm-9" id="searchForm" name="query" class="form-control">
+                <button style="margin-top: -3px" class="btn btn-success col-sm-3">Search</button>
+            </div>
+        </div>
+        <span class="help-block" id="helpBlock">Found your favorite record by typing his title or one of the
+            singer name's</span>
+    </form>
+</div>

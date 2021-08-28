@@ -1,0 +1,48 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+    <div class="col-lg-12">
+        <hr>
+        <h2 class="intro-text text-center">
+            {{ album_title }}
+        </h2>
+        <hr class="detail-separator">
+    </div>
+
+    <div class="container">
+
+        <div class="col-sm-6">
+            <img class="img-responsive" src="{{ thumbnail }}" alt="{{ album_title }}">
+        </div>
+
+        <div class="col-sm-6">
+            <div style="margin-bottom: 45px">
+                <h2 class="text_center artist_name">Artists</h2>
+                <p>{{ artists_name }}</p>
+            </div>
+        </div>
+
+        <h2 class="artist_name">Book {{ album_title }}</h2>
+        <p class="margin-bottom: 20px;">Ask us to set aside {{ album_title }} for you !</p>
+
+    {% if available %}
+    <form class="form-inline" action="{% url 'store:detail' album_id=album_id %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name" class="control-label">Nom</label>
+            <input type="text" name="name" value="" id="name">
+        </div>
+
+
+        <div class="form-group" >
+            <label for="email" class="control-label">E-mail</label>
+            <input type="text" name="email" value="" id="email">
+        </div>
+
+        <button type="submit" class="btn btn-success">Book now</button>
+    </form>
+    {% else %}
+        <p>Sorry ! You can't booked this record for the moment.</p>
+    {% endif %}
+    </div>
+{% endblock %}

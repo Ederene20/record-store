@@ -19,9 +19,9 @@ from store import views
 # from django.conf import settings
 
 urlpatterns = [
+    path('', views.index, name="index"),
+    path('store/', include(('store.urls', 'store'))),
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('store/', include('store.urls'))
 ]
 
 # if settings.DEBUG:

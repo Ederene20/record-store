@@ -43,7 +43,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="/">All our records</a>
+                        <a href="{% url 'index' %}" class="text-center">Home</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'store:listing' %}">All our records</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'store:booked' %}">Booked</a>
                     </li>
                 </ul>
             </div>
