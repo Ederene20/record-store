@@ -2,9 +2,10 @@ from django.template import loader
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db import transaction
 
 from .models import Album, Artist, Contact, Booking
-from .forms import ContactForm
+from .forms import ContactForm #, ParagraphErrorList
 
 
 # Create your views here.
@@ -41,6 +42,7 @@ def listing(request):
     return render(request, 'store/listing.html', context)
 
 
+@transaction.atomic
 def detail(request, album_id):
     id = int(album_id)
     # album = Album.objects.get(pk=id)
