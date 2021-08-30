@@ -10,6 +10,9 @@ class Artist(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = "Artist"
+
 
 class Contact(models.Model):
     email = models.EmailField(max_length=100)
@@ -17,6 +20,9 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = "Contact"
 
 
 class Album(models.Model):
@@ -30,6 +36,9 @@ class Album(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = "Album"
+
 
 class Booking(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -39,3 +48,6 @@ class Booking(models.Model):
 
     def __str__(self):
         return self.contact.name
+
+    class Meta:
+        verbose_name = "Booking"

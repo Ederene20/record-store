@@ -21,7 +21,7 @@ from store import views
 urlpatterns = [
     path('', views.index, name="index"),
     path('store/', include(('store.urls', 'store'))),
-    path('admin/', admin.site.urls),
+    path('backoffi/', admin.site.urls),
 ]
 
 # if settings.DEBUG:
