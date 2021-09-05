@@ -2,12 +2,10 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django.urls import reverse
 from django.contrib.contenttypes.models import ContentType
-
 # Register your models here.
 from .models import Booking, Contact, Artist, Album
 
 # admin.site.register(Booking)
-
 
 # class AdminURLMixin(object):
 #    content_type = ContentType.objects.get_for_model(obj.__class__)
@@ -16,6 +14,7 @@ from .models import Booking, Contact, Artist, Album
 #        return reverse('admin:store_%_change' % (
 #            content_type.model),
 #            args=(obj.id,))
+
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
