@@ -39,7 +39,7 @@ class AlbumArtistInline(admin.TabularInline):
 
 @admin.register(Artist)
 class ArtistAdmin(admin.ModelAdmin):
-    inlines = [AlbumArtistInline,]
+    inlines = [AlbumArtistInline, ]
 
 
 class BookingInLine(admin.TabularInline):
