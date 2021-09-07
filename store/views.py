@@ -5,10 +5,7 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.db import transaction
 
 from .models import Album, Artist, Contact, Booking
-from .forms import ContactForm #, ParagraphErrorList
-
-
-# Create your views here.
+from .forms import ContactForm
 
 
 def index(request):

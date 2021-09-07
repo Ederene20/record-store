@@ -5,16 +5,6 @@ from django.contrib.contenttypes.models import ContentType
 # Register your models here.
 from .models import Booking, Contact, Artist, Album
 
-# admin.site.register(Booking)
-
-# class AdminURLMixin(object):
-#    content_type = ContentType.objects.get_for_model(obj.__class__)
-
-#    def get_admin_url(self, obj):
-#        return reverse('admin:store_%_change' % (
-#            content_type.model),
-#            args=(obj.id,))
-
 
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
@@ -23,7 +13,7 @@ class BookingAdmin(admin.ModelAdmin):
 
     def album_link(self, booking):
         path = 'admin:store_booking_change'
-        url = reverse(path, args=(booking.album.id))
+        url = reverse(path, args=booking.album.id)
         return mark_safe('<a href="{}">{}</a>'.format(url, booking.album.title))
 
     def has_add_permission(self, request):
