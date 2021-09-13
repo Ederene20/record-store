@@ -27,23 +27,17 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-se3i^z9@a1m0qx(zc&ah7
 if os.environ.get('ENV') == 'PRODUCTION':
 
     # Static files settings
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
     # Extra places for collectstatic to find static files
-    STATICFILES_DIRS = (
-        os.path.join(PROJECT_ROOT, 'static')
-    )
 
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-    db_from_env = dj_database_url.config()
-    DATABASES = {'default':db_from_env}
+    prod_db = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(prod_db)
 
     DEBUG = False
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['disquaire.herokuapp.com']  # '127.0.0.1'
+ALLOWED_HOSTS = ['recordstorebooking.herokuapp.com']  # '127.0.0.1'
 
 
 # Application definition
@@ -158,8 +152,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
