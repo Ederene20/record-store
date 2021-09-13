@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,32 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-se3i^z9@a1m0qx(zc&ah7_va3pdj0mph(&1soek-6@73&g7y_9'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-se3i^z9@a1m0qx(zc&ah7_va3pdj0mph(&1soek-6@73&g7y_9')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if os.environ.get('ENV') == 'PRODUCTION':
 
-ALLOWED_HOSTS = ['127.0.0.1']
+    # Static files settings
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+    STATIC_URL = '/static/'
+
+    # Extra places for collectstatic to find static files
+    STATICFILES_DIRS = (
+        os.path.join(PROJECT_ROOT, 'static')
+    )
+
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
+
+    DEBUG = False
+else:
+    DEBUG = True
+
+ALLOWED_HOSTS = ['disquaire.herokuapp.com']  # '127.0.0.1'
 
 
 # Application definition
@@ -51,8 +72,9 @@ MIDDLEWARE = [
     #'debug_toolbar.middleware.DebugToolbarMiddleWare',
     #
 
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.security.SecurityMiddleware'
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

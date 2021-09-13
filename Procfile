@@ -1,0 +1,1 @@
+web: gunicorn record_store.wsgi
